@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+%\usepackage[utf8]{includeenc}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{\textsc{Working Draft}}
+%\SetWatermarkScale{0.6}
+%\SetWatermarkColor[rgb]{1.0,0.33,0.33}
+%\SetWatermarkLightness{0.93}
+%\SetWatermarkAngle{55.789}
+
+% All packages are defined in this file (e.g., Tikz, etc...)
+\include{defs}
+
+% Images used throughout the document (e.g., system architecture, etc) are included in the folder img, if you use tikz icons put them in an icons folder
+% All sections are outsourced from the sections folder
+
+%%% NOTICE %%%
+% Per our discussion, we're limiting ourselves to the core technical meat and not all of the extensions so as not to overload readers and muddy the water. 
+% Remember, we want this to be accessible to the public! That means not going crazy with the detail and instead focusing on explaining why, in simple language, things work. To that end, we're only talking about the sections listed below, and that explicitly means limited discussion of the following (with exceptions listed):
+% 1. Token Economics, but mentioning block reward/generation is OK
+% 2. Governance (including node election and stake), except to mention it exists, also OK to mention voting protocol RSV/Scantegrity/etc
+% 3. 2-phase payments---yes the single phase is only secure in the context of the larger platform, but 2-phase is 2-complicated.
+% 4. Any of the anonymous large payload designs -- completely off-limits
+% 5. dApp details, except to acknowledge you can build them
+% 6. Private user discovery protocol -- completely off-limits
+% 7. Linked coins protocol -- completely off-limits
+% 8. Group and Channel messaging protocols -- completely off-limits
+% 9. The anonymous & decentralized credentialing systems -- completely off-limits
+% 10. Any of the state of the tech, although listing or screenshotting something might be ok... talk to me first
+% 11 (yes, of course i made this one up to make the list count prime -- deal with it :-D). Any of the half-baked stuff we've been kicking around (the SGX matryoshka replacement idea, cmix w/ xors extension, etc) -- completely off-limits
+%
+% Remember, the plan is to release the core tech, gather feedback and hopefully get people who can contribute interested. Ultimately, we do want a community formed around this, and we are trying to set a high bar of clear and accessible technical comms. I know this is frustrating to some, but we do not have the resources to write up everything to this standard as quickly as we need to, and we will release the details of the other topics either in the whitepaper or in due time. 
+%
+% If you have problems/questions/concerns/ideas, please bring them up with me (Rick) and we will address 1-on-1 before going to the group.
+%% END NOTICE %%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Scalable Digital Sovereignty}
+
+\author{www.elixxir.io}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% executive summary
+\include{sections/executive_summary}
+
+% letterFromDavid
+\include{sections/letter}
+
+\setlength{\parskip}{0em}
+\tableofcontents
+\setlength{\parskip}{0.75em}
+
+\break
+
+% High-Level Overview
+\include{sections/introduction}
+
+% System Architecture or System Overview
+\include{sections/architecture}
+
+% Consensus
+\include{sections/consensus}
+
+% Payments
+\include{sections/payments}
+
+% Message Mixing
+\include{sections/mixing}
+
+% Conclusion
+\include{sections/conclusion}
+
+%References 
+\include{sections/references}
+
+\end{document}

@@ -1,0 +1,214 @@
+%%novalidate
+
+\usepackage{calc}
+\usepackage{booktabs}
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{amssymb, amsmath}
+\usepackage{kbordermatrix}
+\usepackage{tikz}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{comment}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+
+\usepackage[backend=biber,style=numeric, sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+\usetikzlibrary{arrows, calc, matrix, positioning, shapes.geometric}
+
+\def\name{Elixxir\xspace}
+
+\newcommand{\rn}[2]{%% "rn": "remember node"
+    \tikz[remember picture,baseline=(#1.base)]\node [inner sep=0] (#1) {$#2$};%
+}
+\renewcommand{\kbldelim}{[}% Left delimiter
+\renewcommand{\kbrdelim}{]}% Right delimiter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TIKZ SHAPES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=2cm, text centered, draw=black, fill=orange!30]
+
+\tikzstyle{block} = [rectangle, minimum width=2cm, minimum height=1.5cm, text centered, draw=black, fill=orange!30]
+
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% colors
+%\definecolor{color1}{HTML}{000060}
+%\definecolor{color1}{HTML}{3667AB} -> MixxLabs
+\definecolor{color1}{HTML}{090189}
+%\definecolor{color1}{HTML}{8C260F}
+%\definecolor{color2}{HTML}{333333}
+\definecolor{color2}{HTML}{000000}
+
+% fonts
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[ExternalLocation=fonts/,
+BoldFont=Lato-Bold.ttf,
+ItalicFont=Lato-Italic.ttf,
+BoldItalicFont=Lato-BoldItalic.ttf]
+{Lato-Regular.ttf}
+\newfontfamily\headingfont[ExternalLocation=fonts/,ItalicFont=Lato-BlackItalic.ttf]{Lato-Black.ttf}
+%%%
+
+% Page Settings
+\usepackage{geometry}
+\geometry{a4paper,
+hmargin=1in,vmargin=1in,
+head=0.5in,foot=0.5in}
+
+% hbox controls
+\pretolerance=150
+\tolerance=100
+\setlength{\emergencystretch}{3em}
+
+% Line, paragraph, list, etc spacing
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.75em}
+\linespread{1.1}
+\usepackage{enumitem}
+\setlist{nolistsep}
+
+
+
+
+\usepackage[hang]{caption}
+\DeclareCaptionFormat{upper}{#1#2\makeatletter{#3}\par}
+\captionsetup{labelfont={bf,color=color2},textfont={normalsize,color=color2},format = upper,figurename=Figure,tablename=Table}
+
+%%% fancy sections
+\usepackage{titlesec}
+%\titleformat{\chapter}{\headingfont\LARGE\bfseries\scshape\color{color1}}{\thechapter}{1em}{}[\titlerule]
+\titleformat{\section}{\color{color1}\headingfont\Large\bfseries\uppercase}{\thesection}{1em}{}[\titlerule]
+\titlespacing{\section}{0pt}{*1}{*1}
+
+\titleformat{\subsection}{\color{color1}\headingfont\large\bfseries\uppercase}{\thesubsection}{1em}{}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+
+
+\titleformat{\subsubsection}{\color{color1}\headingfont\bfseries\uppercase}{\thesubsubsection}{1em}{}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+%%%
+
+% head and foot
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\makeatletter
+\rhead{\color{color2}\@date}
+\makeatother
+\newlength{\myheight}
+\lfoot{
+\settoheight{\myheight}{\thepage}
+\raisebox{-2ex-0.5\myheight}{\includegraphics[height=4ex]{img/elixxirLogo.pdf}}
+}
+\cfoot{\color{color2} \name Technical Brief}
+\rfoot{\color{color2}\thepage}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+
+% custom titlepage
+\makeatletter
+\newcommand*\DefVar[1]{\@namedef{#1}##1{\global\@namedef{get#1}{##1}}}
+\DefVar{summary}
+\renewcommand{\maketitle}{
+\vspace*{\fill}
+\begingroup
+
+\begin{center}
+
+\includegraphics[width=\textwidth]{img/elixxirLogo.pdf}
+
+\begin{tikzpicture}
+    \node[draw=none,%color1,line width=0.4pt,
+      fill=color1,
+      inner sep = 10pt,
+      text width=\textwidth-20pt,
+      text centered
+    ] {\color{white}\headingfont\bfseries\huge\@title};
+\end{tikzpicture}
+
+\bigbreak \bigbreak \bigbreak 
+
+\LARGE \textbf{Technical Brief}
+
+\bigbreak \bigbreak \bigbreak 
+\headingfont\bfseries\large\@author\par
+{\normalfont\normalsize\textbf{Version:} 0.7}
+\bigbreak \bigbreak \bigbreak 
+\bigbreak \bigbreak \bigbreak 
+\bigbreak \bigbreak \bigbreak 
+
+
+\iffalse
+\bigskip\medskip
+{\color{color2}\normalfont\normalsize\textbf{Summary:}\\
+\getsummary}
+\fi
+\end{center}
+\endgroup
+\vspace*{\fill}
+\clearpage
+}
+\makeatother
+%%%
+
+%%% fancy boxes
+\usepackage{tcolorbox}
+\usepackage{wrapfig}
+\def\fullboxbegin{
+\bigskip
+\begin{tcolorbox}[colback=color1,colframe=color1,coltext=white,arc=0mm,boxrule=0pt]
+}
+\def\fullboxend{\end{tcolorbox}\medskip}
+%
+\def\leftboxbegin{
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{tcolorbox}[colback=color1,colframe=color1,coltext=white,arc=0mm,boxrule=0pt]
+}
+\def\leftboxend{
+\end{tcolorbox}
+\end{wrapfigure}
+}
+%
+\def\rightboxbegin{
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{tcolorbox}[colback=color1,colframe=color1,coltext=white,arc=0mm,boxrule=0pt]
+}
+\def\rightboxend{
+\end{tcolorbox}
+\end{wrapfigure}
+}
+%
+\newcounter{frames}
+\def\frameboxbegin#1{
+\bigskip
+\refstepcounter{frames}
+\begin{tcolorbox}[colback=white,colframe=color1,arc=0mm,title={\MakeUppercase{\textbf{Note \arabic{frames}}: #1}}]
+}
+\def\frameboxend{
+\end{tcolorbox}
+}
+%%%
